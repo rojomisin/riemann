@@ -1,10 +1,5 @@
 grammar Query;
 
-options {
-	output=AST;
-	ASTLabelType=CommonTree;
-}
-
 tokens {
 	AND = 'and';
 	OR = 'or';
@@ -20,7 +15,7 @@ tokens {
 	TAGGED = 'tagged';
 }
 
-@header		{package riemann;}
+@header		      {package riemann;}
 @lexer::header 	{package riemann;}
 
 expr	:	(or EOF) -> or;
@@ -61,7 +56,7 @@ greater	:	field WS* GREATER^ WS* value;
 greater_equal
 	:	field WS* GREATER_EQUAL^ WS* value;
 not_equal
-	:	field WS* NOT_EQUAL^ WS* value;	
+	:	field WS* NOT_EQUAL^ WS* value;
 equal	:	field WS* EQUAL^ WS* value;
 
 tagged	:	TAGGED^ WS* String;

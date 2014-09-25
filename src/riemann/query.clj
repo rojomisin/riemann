@@ -3,14 +3,14 @@
   which match events."
   (:use riemann.common
         [slingshot.slingshot :only [throw+ try+]])
-  (:require [clojure.core.cache :as cache])
-  (:import (org.antlr.runtime ANTLRStringStream
-                              CommonTokenStream)
-           (org.antlr.runtime.tree BaseTree)
-           (riemann QueryLexer QueryParser)))
+  (:require [clojure.core.cache :as cache]
+            [clojure.java.io :as io]
+            [clj-antlr.core :as antlr]))
 
 ; With many thanks to Brian Carper
 ; http://briancarper.net/blog/554/antlr-via-clojure
+
+(def parser (antlr/parser (io/resource "Query.g4")))
 
 (defn parse-string
   "Parse string into ANTLR tree nodes"
