@@ -18,7 +18,7 @@
            [io.netty.handler.codec LengthFieldBasedFrameDecoder
                                    LengthFieldPrepender]
            [io.netty.handler.ssl SslHandler]
-           [io.netty.channel.epoll EpollEventLoopGroup EpollServerSocketChannel]
+           ;;[io.netty.channel.epoll EpollEventLoopGroup EpollServerSocketChannel]
            [io.netty.channel.nio NioEventLoopGroup]
            [io.netty.channel.socket.nio NioServerSocketChannel])
   (:require [less.awful.ssl :as ssl]
@@ -78,8 +78,8 @@
   platforms. See http://netty.io/wiki/native-transports.html"
   (if (and (.contains (. System getProperty "os.name") "Linux")
            (.contains (. System getProperty "os.arch") "amd64"))
-    {:event-loop-group-fn #(EpollEventLoopGroup.)
-     :channel EpollServerSocketChannel}
+    ;;{:event-loop-group-fn #(EpollEventLoopGroup.)
+     ;;:channel EpollServerSocketChannel}
     {:event-loop-group-fn #(NioEventLoopGroup.)
      :channel NioServerSocketChannel}))
 
